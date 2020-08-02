@@ -98,10 +98,11 @@
                         let orders = response["orders"];
                         // console.log(orders);
                         for (let i = 0; i < orders.length; i++) {
-                            name = orders[i]["name"];
-                            count = orders[i]["count"];
-                            address = orders[i]["address"];
-                            phone = orders[i]["phone"];
+                            let name = orders[i]["name"];
+                            let count = orders[i]["count"];
+                            let address = orders[i]["address"];
+                            let phone = orders[i]["phone"];
+                            // let idx = i + 1;
 
                             makeOrderRow(name, count, address, phone);
 
