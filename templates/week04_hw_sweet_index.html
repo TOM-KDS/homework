@@ -81,6 +81,9 @@
             }
 
             $(document).ready(function () {
+
+                dollarDisplay();
+
                 $("#orders-box").html("");
                 showOrders();
             });
@@ -117,6 +120,22 @@
 
                 $("#orders-box").append(tempHtml);
             }
+
+            function dollarDisplay() {
+                $('#dollar-display').empty();
+                // 여기에 환율 API Ajax 요청을 하면 되겠죠?
+                $.ajax({
+                    type: "GET", // GET 방식으로 요청한다.
+                    url: "https://api.manana.kr/exchange/rate.json",
+                    data: {}, // 요청하면서 함께 줄 데이터 (GET 요청시엔 비워두세요)
+                    success: function(response){ // 서버에서 준 결과를 response라는 변수에 담음
+                      let dollar = response[1]['rate']; // 서버에서 준 결과를 이용해서 나머지 코드를 작성
+                      let tempHtml = "달러/원 환율 : " + dollar;
+                      $('#dollar-display').append(tempHtml);
+                    }
+                })
+            }
+
         </script>
 
         <style type="text/css">
@@ -153,6 +172,12 @@
             .orders {
                 margin-top: 100px;
             }
+
+            #dollar-display {
+                color: blue;
+                font-size: 20px;
+            }
+
         </style>
     </head>
     <body>
@@ -162,6 +187,7 @@
                 <h1>양초를 팝니다</h1>
                 <h5>가격: 3,000 원 / 개</h5>
                 <p>이 양초는 사실 특별한 힘을 가지고 있어요. 양초를 켜고 소원을 빌면 짜자잔 뭐든지 이뤄지게 된답니다. 하나 사가세요! 대나무 향이 아주 좋아요</p>
+                <p id="dollar-display"> 20200802 달러-원 환율 추가 </p>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text">주문자 이름</span>
