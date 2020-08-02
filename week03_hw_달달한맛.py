@@ -9,6 +9,7 @@ soup = BeautifulSoup(data.text, 'html.parser')
 trs = soup.select('#body-content > div.newest-list > div > table > tbody > tr')
 # 아래 빈 칸('')을 채워보세요
 # 추가적으로 주석 추가 함
+# 추가적 주석 추가 again
 
 for tr in trs:
     rank = tr.select_one('tr > td.number').text[0:2].strip()
